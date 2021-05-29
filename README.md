@@ -10,6 +10,10 @@ playLastSeenLocationCode(player) - Plays "Suspect last in [location]" where [loc
     
 playLastSeenVehicleCode(player) - Plays "Suspect last in a [vehicle color] [vehicle type]" or "Suspect last seen on foot" where [vehicle color] and [vehicle type] is the color and vehicle type of the player
 
+
+
+The only known missing zone is Jefferson.
+
 ## Exported functions:
 
 exports.pcgpolicecode:playLocationCode(player, id)
