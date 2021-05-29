@@ -1,0 +1,166 @@
+<loccode>
+	<code loc="Aldea Malvada" id="0" dur="0.960125"/>
+	<code loc="Angel Pine" id="1" dur="0.655375"/>
+	<code loc="Arco del Oeste" id="2" dur="1.0215"/>
+	<code loc="Avispa Country Club" id="3" dur="0.966875"/>
+	<code loc="Back o Beyond" id="4" dur="0.7975"/>
+	<code loc="Battery Point" id="5" dur="0.73825"/>
+	<code loc="Bayside" id="6" dur="0.538"/>
+	<code loc="Bayside Marina" id="7" dur="0.9465"/>
+	<code loc="Bayside Tunnel" id="8" dur="0.705125"/>
+	<code loc="Beacon Hill" id="9" dur="0.604125"/>
+	<code loc="Blackfield" id="10" dur="0.93225"/>
+	<code loc="Blackfield Chapel" id="11" dur="0.95825"/>
+	<code loc="Blackfield Intersection" id="12" dur="1.14325"/>
+	<code loc="Blueberry Acres" id="13" dur="0.850375"/>
+	<code loc="Blueberry" id="14" dur="0.439125"/>
+	<code loc="Bone County" id="15" dur="0.592875"/>
+	<code loc="Caligula's Palace" id="16" dur="1.03125"/>
+	<code loc="Calton Heights" id="17" dur="0.81825"/>
+	<code loc="Chinatown" id="18" dur="0.64125"/>
+	<code loc="City Hall" id="19" dur="0.56825"/>
+	<code loc="Come-A-Lot" id="20" dur="0.490875"/>
+	<code loc="Commerce" id="21" dur="0.595875"/>
+	<code loc="Conference Center" id="22" dur="0.833625"/>
+	<code loc="Cranberry Station" id="23" dur="0.9975"/>
+	<code loc="Dillimore" id="24" dur="0.519125"/>
+	<code loc="Doherty" id="25" dur="0.533625"/>
+	<code loc="Downtown" id="26" dur="0.644"/>
+	<code loc="Downtown Los Santos" id="27" dur="1.3705"/>
+	<code loc="East Los Santos" id="28" dur="1.139125"/>
+	<code loc="East Beach" id="29" dur="0.720125"/>
+	<code loc="Easter Basin" id="30" dur="0.74075"/>
+	<code loc="Easter Bay Airport" id="31" dur="1.019375"/>
+	<code loc="Easter Bay Bluffs Chemical Plant" id="32" dur="1.4305"/>
+	<code loc="Easter Tunnel" id="33" dur="0.6165"/>
+	<code loc="El Castillo del Diablo" id="34" dur="1.32975"/>
+	<code loc="El Corona" id="35" dur="0.70725"/>
+	<code loc="El Quebrados" id="36" dur="0.8"/>
+	<code loc="Esplanade East" id="37" dur="1.180875"/>
+	<code loc="Esplanade North" id="38" dur="0.91325"/>
+	<code loc="Fallen Tree" id="39" dur="0.599375"/>
+	<code loc="Fallow Bridge" id="40" dur="0.742"/>
+	<code loc="Fern Ridge" id="41" dur="0.625125"/>
+	<code loc="Financial" id="42" dur="0.564375"/>
+	<code loc="Fisher's Lagoon" id="43" dur="0.89225"/>
+	<code loc="Flint County" id="44" dur="0.585375"/>
+	<code loc="Flint Intersection" id="45" dur="1.006625"/>
+	<code loc="Flint Range" id="46" dur="0.72225"/>
+	<code loc="Flint Water" id="47" dur="0.77075"/>
+	<code loc="Fort Carson" id="48" dur="0.759"/>
+	<code loc="Foster Valley" id="49" dur="0.780125"/>
+	<code loc="Frederick Bridge" id="50" dur="0.70625"/>
+	<code loc="Ganton" id="51" dur="0.40975"/>
+	<code loc="Gant Bridge" id="52" dur="0.73075"/>
+	<code loc="Garcia" id="53" dur="0.54875"/>
+	<code loc="Garver Bridge" id="54" dur="0.735875"/>
+	<code loc="Glen Park" id="55" dur="0.687625"/>
+	<code loc="Greenglass College" id="56" dur="1.180875"/>
+	<code loc="Green Palms" id="57" dur="0.610375"/>
+	<code loc="Hampton Barns" id="58" dur="0.80975"/>
+	<code loc="Hankypanky Point" id="59" dur="0.900875"/>
+	<code loc="Harry Gold Parkway" id="60" dur="1.0775"/>
+	<code loc="Hashberry" id="61" dur="0.6645"/>
+	<code loc="Hilltop Farm" id="62" dur="0.806125"/>
+	<code loc="Hunter Quarry" id="63" dur="0.643375"/>
+	<code loc="Idlewood" id="64" dur="0.55625"/>
+	<code loc="Julius Thruway East" id="65" dur="1.07325"/>
+	<code loc="Julius Thruway North" id="66" dur="1.182875"/>
+	<code loc="Julius Thruway South" id="67" dur="1.32625"/>
+	<code loc="Julius Thruway West" id="68" dur="1.286125"/>
+	<code loc="Juniper Hill" id="69" dur="0.719"/>
+	<code loc="Juniper Hollow" id="70" dur="0.874"/>
+	<code loc="K.A.C.C. Military Fuels" id="71" dur="1.883375"/>
+	<code loc="Kincaid Bridge" id="72" dur="0.841625"/>
+	<code loc="King's" id="73" dur="0.68825"/>
+	<code loc="Las Barrancas" id="74" dur="0.884"/>
+	<code loc="Las Brujas" id="75" dur="0.7975"/>
+	<code loc="Las Payasadas" id="76" dur="1.110125"/>
+	<code loc="Last Dime Motel" id="77" dur="1.153625"/>
+	<code loc="Las Venturas" id="78" dur="0.841625"/>
+	<code loc="Leafy Hollow" id="79" dur="0.7015"/>
+	<code loc="Lil Probe Inn" id="80" dur="0.813625"/>
+	<code loc="Linden Side" id="81" dur="0.88975"/>
+	<code loc="Linden Station" id="82" dur="0.888"/>
+	<code loc="Little Mexico" id="83" dur="0.872"/>
+	<code loc="Las Colinas" id="84" dur="0.973"/>
+	<code loc="Los Flores" id="85" dur="0.945125"/>
+	<code loc="Los Santos" id="86" dur="0.869125"/>
+	<code loc="Los Santos Inlet" id="87" dur="1.05875"/>
+	<code loc="Los Santos International" id="88" dur="1.27875"/>
+	<code loc="Los Sepulcros" id="89" dur="1.107625"/>
+	<code loc="Las Venturas Airport" id="90" dur="1.225375"/>
+	<code loc="LVA Freight Depot" id="91" dur="1.383625"/>
+	<code loc="Marina" id="92" dur="0.633375"/>
+	<code loc="Market" id="93" dur="0.47875"/>
+	<code loc="Market Station" id="94" dur="0.9245"/>
+	<code loc="Martin Bridge" id="95" dur="0.7555"/>
+	<code loc="Missionary Hill" id="96" dur="0.872"/>
+	<code loc="Montgomery" id="97" dur="0.563625"/>
+	<code loc="Montgomery Intersection" id="98" dur="1.051125"/>
+	<code loc="Mount Chiliad" id="99" dur="0.765375"/>
+	<code loc="Mulholland" id="100" dur="0.720125"/>
+	<code loc="Mulholland Intersection" id="101" dur="1.09975"/>
+	<code loc="Northstar Rock" id="102" dur="0.881875"/>
+	<code loc="Ocean Docks" id="103" dur="0.75825"/>
+	<code loc="Ocean Flats" id="104" dur="0.893"/>
+	<code loc="Octane Springs" id="105" dur="0.928"/>
+	<code loc="Old Venturas Strip" id="106" dur="1.13475"/>
+	<code loc="Open Ocean" id="107" dur="0.67475"/>
+	<code loc="Palisades" id="108" dur="0.7505"/>
+	<code loc="Palomino Creek" id="109" dur="0.756875"/>
+	<code loc="Paradiso" id="110" dur="0.7315"/>
+	<code loc="Pilgrams Creek" id="111" dur="0.766625"/>
+	<code loc="Pilson Intersection" id="112" dur="1.152875"/>
+	<code loc="Playa del Seville" id="113" dur="1.18"/>
+	<code loc="Prickle Pine" id="114" dur="0.6205"/>
+	<code loc="Queens" id="115" dur="0.5215"/>
+	<code loc="Randolph Industrial Estate" id="116" dur="1.319"/>
+	<code loc="Red County" id="117" dur="0.662"/>
+	<code loc="Redsands East" id="118" dur="1.054125"/>
+	<code loc="Redsands West" id="119" dur="1.15475"/>
+	<code loc="Regular Tom" id="120" dur="0.721125"/>
+	<code loc="Richman" id="121" dur="0.644125"/>
+	<code loc="Roca Escalante" id="122" dur="1.0905"/>
+	<code loc="Rockshore East" id="123" dur="1.01825"/>
+	<code loc="Rockshore West" id="124" dur="0.9805"/>
+	<code loc="Rodeo" id="125" dur="0.633625"/>
+	<code loc="Royale Casino" id="126" dur="0.923375"/>
+	<code loc="San Andreas Sound" id="127" dur="1.0895"/>
+	<code loc="San Fierro" id="128" dur="0.7765"/>
+	<code loc="San Fierro Bay" id="129" dur="1.004375"/>
+	<code loc="Santa Flora" id="130" dur="0.764125"/>
+	<code loc="Santa Maria Beach" id="131" dur="1.091125"/>
+	<code loc="Shady Creeks" id="132" dur="0.883625"/>
+	<code loc="Sherman Reservoir" id="133" dur="0.9605"/>
+	<code loc="Sobell Rail Yards" id="134" dur="1.4415"/>
+	<code loc="Spinybed" id="135" dur="0.802"/>
+	<code loc="Starfish Casino" id="136" dur="0.942875"/>
+	<code loc="Sunnyside" id="137" dur="0.624"/>
+	<code loc="Temple" id="138" dur="0.417875"/>
+	<code loc="'The Big Ear'" id="139" dur="1.3025"/>
+	<code loc="The Camel's Toe" id="140" dur="0.808625"/>
+	<code loc="The Clown's Pocket" id="141" dur="0.771875"/>
+	<code loc="The Emerald Isle" id="142" dur="0.73475"/>
+	<code loc="The Farm" id="143" dur="0.58075"/>
+	<code loc="The Four Dragons Casino" id="144" dur="1.140125"/>
+	<code loc="The High Roller" id="145" dur="0.653375"/>
+	<code loc="The Mako Span" id="146" dur="0.843"/>
+	<code loc="The Panopticon" id="147" dur="0.8405"/>
+	<code loc="The Pink Swan" id="148" dur="0.725375"/>
+	<code loc="The Pirates In Mens Pants" id="149" dur="1.386125"/>
+	<code loc="The Sherman Dam" id="150" dur="0.855375"/>
+	<code loc="The Visage" id="151" dur="0.749"/>
+	<code loc="Tierra Robada" id="152" dur="0.86325"/>
+	<code loc="Unity Station" id="153" dur="0.9015"/>
+	<code loc="Valle Ocultado" id="154" dur="1.166875"/>
+	<code loc="Verdant Bluffs" id="155" dur="0.99825"/>
+	<code loc="Verdant Meadows" id="156" dur="0.651125"/>
+	<code loc="Verona Beach" id="157" dur="0.9575"/>
+	<code loc="Vinewood" id="158" dur="0.69225"/>
+	<code loc="Whetstone" id="159" dur="0.57825"/>
+	<code loc="Whitewood Estates" id="160" dur="1.1155"/>
+	<code loc="Willowfield" id="161" dur="0.70725"/>
+	<code loc="Yellow Bell Golf Course" id="162" dur="1.394375"/>
+	<code loc="Yellow Bell Station" id="163" dur="1.113"/>
+</loccode>

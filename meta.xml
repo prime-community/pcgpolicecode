@@ -1,0 +1,14 @@
+<meta>
+	<info author="Bombz" />	
+	
+	<script src="pcgpolicecode.lua" type="client" cache="false"/>
+	
+	<export function="playLocationCode" type="client" />
+	<export function="playLastSeenLocationCode" type="client" />
+	<export function="playLastSeenVehicleCode" type="client" />
+	
+	<file src="codezones.xml" cache="false"/>
+	<file src="carcolors.xml" cache="false"/>
+	<file src="vehiclecode.xml" cache="false"/>
+	<file src="vehiclecodetime.xml" cache="false"/>
+</meta>
