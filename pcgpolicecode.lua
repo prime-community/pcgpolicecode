@@ -82,7 +82,7 @@ function sayIn() -- ~180
 	setTimer(destroyElement, 120, 1, snd)
 end
 
-function sayTenCode(id)
+function sayTenCode(id) -- 9 sounds different, id should be 0 - 8 or 10
 	local tenCode = playPoliceSFX("script", 4, id, false)
 end
 
