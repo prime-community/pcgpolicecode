@@ -1,192 +1,232 @@
-local volume = 0.4
+local DEFAULT_VOLUME = 0.4
 
-local locID
-local colorID
-local vehCode
-local vehCodeTime
+local volume = DEFAULT_VOLUME
+local policeCodeActive = false
+local xmlData = {}
 
-function loadXML()
-	local xml = xmlLoadFile("codezones.xml")
-	local locNodes = xmlNodeGetChildren(xml)
-	locID = {}
-	for i, xmlnode in ipairs(locNodes) do
-		local loc = xmlNodeGetAttribute(xmlnode, "loc")
-		locID[loc] = xmlNodeGetAttributes(xmlnode)
-	end
-	xmlUnloadFile(xml)
+-- ********
+-- Resource start
+-- ********
+
+local function loadXML(fileName, index)
+	local xmlRoot = xmlLoadFile(fileName)
+	if not xmlRoot then return false end
 	
-	xml = xmlLoadFile("carcolors.xml")
-	locNodes = xmlNodeGetChildren(xml)
-	colorID = {}
-	for i, xmlnode in ipairs(locNodes) do
-		local id = tonumber(xmlNodeGetAttribute(xmlnode, "id"))
-		colorID[id] = xmlNodeGetAttributes(xmlnode)
-	end
-	xmlUnloadFile(xml)
+	local t = {}
 	
-	xml = xmlLoadFile("vehiclecode.xml")
-	locNodes = xmlNodeGetChildren(xml)
-	vehCode = {}
-	for i, xmlnode in ipairs(locNodes) do
-		local id = tonumber(xmlNodeGetAttribute(xmlnode, "id"))
-		vehCode[id] = xmlNodeGetAttributes(xmlnode)
+	local nodes = xmlNodeGetChildren(xmlRoot)
+	for k,node in ipairs(nodes) do
+		local attr = xmlNodeGetAttributes(node)
+		for k,v in pairs(attr) do
+			attr[k] = tonumber(v) or v
+		end
+		
+		if not attr[index] then
+			xmlUnloadFile(xmlRoot)
+			return false
+		end
+		
+		t[attr[index]] = attr
 	end
-	xmlUnloadFile(xml)
 	
-	xml = xmlLoadFile("vehiclecodetime.xml")
-	locNodes = xmlNodeGetChildren(xml)
-	vehCodeTime = {}
-	for i, xmlnode in ipairs(locNodes) do
-		local id = tonumber(xmlNodeGetAttribute(xmlnode, "id"))
-		vehCodeTime[id - 1] = xmlNodeGetAttributes(xmlnode)
-	end
-	xmlUnloadFile(xml)
+	xmlUnloadFile(xmlRoot)
+	
+	return t
 end
-addEventHandler("onClientResourceStart", resourceRoot, loadXML)
+
+local function onClientResourceStart()
+	xmlData.codezones = loadXML("codezones.xml", "loc")
+	if not xmlData.codezones then return cancelEvent(true, "Loading codezones.xml failed") end
+	
+	xmlData.carcolors = loadXML("carcolors.xml", "id")
+	if not xmlData.carcolors then return cancelEvent(true, "Loading carcolors.xml failed") end
+	
+	xmlData.vehiclecode = loadXML("vehiclecode.xml", "id")
+	if not xmlData.vehiclecode then return cancelEvent(true, "Loading vehiclecode.xml failed") end
+	
+	xmlData.vehiclecodetime = loadXML("vehiclecodetime.xml", "id")
+	if not xmlData.vehiclecodetime then return cancelEvent(true, "Loading vehiclecodetime.xml failed") end
+end
+addEventHandler("onClientResourceStart", resourceRoot, onClientResourceStart)
 
 -- ********
 -- Sound functions
 -- ********
 
-function playPoliceSFX(...)
+local function playPoliceSFX(...)
 	local sound = playSFX(...)
 	setSoundVolume(sound, volume)
 	return sound
 end
 
-function playSwitchSFX()
-	if (isElement(static)) then
+local function playSwitchSFX(switchedOn)
+	if isElement(static) then
 		destroyElement(static)
-	else
+	end
+	
+	if switchedOn then
 		static = playSFX("genrl", 52, 3, true)
 		setSoundVolume(static, volume * 0.1)
-	end
-	return playSFX("genrl", 52, 24, false)	
-end
-
-function sayZone(player)
-	if (not isElement(player)) then return end
-	
-	local x, y, z = getElementPosition(player)
-	local location = getZoneName (x, y, z)		
-	if (locID[location]) then
-		playPoliceSFX("script", 0, locID[location].id, false)
+		
+		policeCodeActive = true
 	else
-		location = getZoneName(x, y, z, true)
-		playPoliceSFX("script", 0, locID[location].id, false)
+		policeCodeActive = false
 	end
+
+	playSFX("genrl", 52, 24, false)
+	return true
 end
 
-function sayIn() -- ~180
+local function sayZone(location)
+	return playPoliceSFX("script", 0, xmlData.codezones[location].id, false)
+end
+
+local function sayIn() -- ~180
 	local snd = playPoliceSFX("script", 3, 2, false)
 	setTimer(destroyElement, 120, 1, snd)
+	return snd
 end
 
-function sayTenCode(id) -- 9 sounds different, id should be 0 - 8 or 10
-	local tenCode = playPoliceSFX("script", 4, id, false)
+local function sayTenCode(id) -- 9 sounds different, id should be 0 - 8 or 10
+	return playPoliceSFX("script", 4, id, false)
 end
 
-function sayInWater() -- ~830
-	local wtr = playPoliceSFX("script", 3, 2, false)
+local function sayInWater() -- ~830
+	return playPoliceSFX("script", 3, 2, false)
 end
 
-function sayVehicleColor(veh)
+local function sayVehicleColor(veh)
 	if (not isElement(veh)) then return end
 	
-	local c1,c2,c3,c4 = getVehicleColor(veh)
-	local carColor = playPoliceSFX("script", 1, colorID[c1].name, false)
+	local c1 = getVehicleColor(veh)
+	return playPoliceSFX("script", 1, xmlData.carcolors[c1].name, false)
 end
 
-function sayCarType(veh)
-	if (not isElement(veh)) then return end
-	
-	local vehID = getElementModel(veh)
-	local vehType = playPoliceSFX("script", 5, tonumber(vehCode[vehID].code), false)
+local function sayCarType(veh_code)
+	return playPoliceSFX("script", 5, veh_code, false)
 end
 
-function sayOnFoot()
-	local onFoot = playPoliceSFX("script", 3, 4, false)
+local function sayOnFoot()
+	return playPoliceSFX("script", 3, 4, false)
 end
 
-function sayInA()
-	local inA = playPoliceSFX("script", 3, 1, false)
+local function sayInA()
+	return playPoliceSFX("script", 3, 1, false)
 end
 
 -- ********
 -- Exported functions
 -- ********
 
--- Plays the "We got a 10-... in ..." sound for position of 'player'
-function playLocationCode(player, id)
-	if (not isElement(player)) then return false end
+-- Plays the "We got a 10-'id'... in ..." sound for position of 'player'
+function playCrimeReport(player, id, optionalVolume)
+	if not isElement(player) then return false end
+	if policeCodeActive then return false end
+	
+	id = tonumber(id)
+	if not id then return falses end
+	id = math.ceil(id)
+	if id < 1 or id > 10 or id == 9 then return false end
+	
+	volume = tonumber(optionalVolume) or DEFAULT_VOLUME
 	
 	local x, y, z = getElementPosition(player)
 	local location = getZoneName(x, y, z)
-	playSwitchSFX()
-	setTimer(playPoliceSFX, 500, 1, "script", 3, 8, false) -- we got a 10
-	setTimer(sayTenCode, 1180, 1, id) -- 37 in
 	
-	if (location == "Unknown") or (isElementInWater(player)) then -- If the player is outside world bounds or submerged in water
-		setTimer(sayInWater, 1740, 1) -- in water
-		setTimer(playSwitchSFX, 2500, 1)
-	else
-		setTimer(sayZone, 1910, 1, player) -- Location
-		if (locID[location]) then
-			setTimer(playSwitchSFX, (tonumber(locID[location].dur) * 1000 + 2010), 1)
-		else
-			location = getZoneName(x, y, z, true)
-			setTimer(playSwitchSFX, (tonumber(locID[location].dur) * 1000 + 2010), 1)
-		end
+	if not location or location == "Unknown" then
+		return false
 	end
 	
-	return true
+	playSwitchSFX(true)
+	setTimer(playPoliceSFX, 500, 1, "script", 3, 8, false) -- we got a 10
+	setTimer(sayTenCode, 1180, 1, id) -- 37 in
+
+	local totalDuration
+	
+	if not xmlData.codezones[location] then	
+		location = getZoneName(x, y, z, true)
+	end
+	setTimer(sayZone, 1910, 1, location) -- Location
+	
+	totalDuration = xmlData.codezones[location].dur * 1000 + 2010
+	setTimer(playSwitchSFX, totalDuration, 1)
+	totalDuration = totalDuration + 100
+	
+	return totalDuration
 end
 
--- Plays the "Suspect last seen in ..." sound for position of 'player'
-function playLastSeenLocationCode(player)
-	if (not isElement(player)) then return false end
+-- Plays the "Suspect last seen in ..." location sound for position of 'player'
+function playLastSeenLocation(player, optionalVolume)
+	if not isElement(player) then return false end
+	if policeCodeActive then return false end
+	
+	volume = tonumber(optionalVolume) or DEFAULT_VOLUME
 
 	local x, y, z = getElementPosition(player)
 	local location = getZoneName (x, y, z)
-	playSwitchSFX()
-	setTimer(playPoliceSFX, 500, 1, "script", 3, 7, false) --suspect last seen
-	if (location == "Unknown") or (isElementInWater(player)) then --if in water
+	
+	playSwitchSFX(true)
+	setTimer(playPoliceSFX, 500, 1, "script", 3, 7, false) -- suspect last seen
+	
+	local totalDuration
+	
+	if location == "Unknown" then -- Outside bounds?
 		setTimer(sayInWater, 1630, 1) -- in water
-		setTimer(playSwitchSFX, 2390, 1)
+		
+		totalDuration = 2390
+		setTimer(playSwitchSFX, totalDuration, 1)
+		totalDuration = totalDuration + 100
 	else
-		setTimer(sayIn, 1400, 1)
-		setTimer(sayZone, 1610, 1, player) -- Location
-		if(locID[location]) then
-			setTimer(playSwitchSFX, (tonumber(locID[location].dur) * 1000 + 1710), 1)
-		else
+		setTimer(sayIn, 1500, 1)
+		
+		if not xmlData.codezones[location] then	
 			location = getZoneName(x, y, z, true)
-			setTimer(playSwitchSFX, (tonumber(locID[location].dur) * 1000 + 1710), 1)
 		end
+		setTimer(sayZone, 1710, 1, location) -- location
+		
+		totalDuration = xmlData.codezones[location].dur * 1000 + 1810
+		setTimer(playSwitchSFX, totalDuration, 1)
+		totalDuration = totalDuration + 100
 	end	
 	
-	return true
+	return totalDuration
 end
 
--- Plays the "last seen in ..." sound for 'player'
-function playLastSeenVehicleCode(player)
-	if (not isElement(player)) then return false end
-
-	local x, y, z = getElementPosition(player)
-	local location = getZoneName(x, y, z)
-	playSwitchSFX()	
-	setTimer(playPoliceSFX, 500, 1, "script", 3, 7, false) --suspect last seen	
+-- Plays the "Suspect last seen in ..." description sound for 'player'
+function playLastSeenDescription(player, optionalVolume)
+	if not isElement(player) then return false end
+	if policeCodeActive then return false end
 	
-	if (getPedOccupiedVehicle(player)) then
-		local vehID = getElementModel(getPedOccupiedVehicle(player))
-		local vehType = tonumber(vehCode[vehID].code)
-		setTimer(sayInA, 1550, 1) --in a
-		setTimer(sayVehicleColor, 1900, 1, getPedOccupiedVehicle(player)) --blue (color)
-		setTimer(sayCarType, 2500, 1, getPedOccupiedVehicle(player))	--2 door (type)
-		setTimer(playSwitchSFX, (tonumber(vehCodeTime[vehType].dur) * 1000 + 2100), 1)
-	else
-		setTimer(sayOnFoot, 1550, 1)
-		setTimer(playSwitchSFX, 2350, 1)
+	volume = tonumber(optionalVolume) or DEFAULT_VOLUME
+
+	local veh = getPedOccupiedVehicle(player)
+	local veh_code
+	if veh then
+		local vehID = getElementModel(veh)
+		if not xmlData.vehiclecode[vehID] then return false end
+
+		veh_code = xmlData.vehiclecode[vehID].code
 	end
 	
-	return true
+	playSwitchSFX(true)	
+	setTimer(playPoliceSFX, 500, 1, "script", 3, 7, false) -- suspect last seen	
+	
+	local totalDuration
+	
+	if veh_code then
+		setTimer(sayInA, 1550, 1) -- in a
+		setTimer(sayVehicleColor, 1900, 1, veh) -- blue (color)
+		setTimer(sayCarType, 2500, 1, veh_code)	-- 2 door (type)
+		
+		totalDuration = xmlData.vehiclecodetime[veh_code].dur * 1000 + 2600
+		setTimer(playSwitchSFX, totalDuration, 1)
+		totalDuration = totalDuration + 100
+	else
+		setTimer(sayOnFoot, 1550, 1)
+		totalDuration = 2350
+		setTimer(playSwitchSFX, totalDuration, 1)
+		totalDuration = totalDuration + 100
+	end
+	
+	return totalDuration
 end

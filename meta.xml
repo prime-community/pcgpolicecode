@@ -1,14 +1,14 @@
 <meta>
 	<info author="Bombz & Zango" />	
 	
-	<script src="pcgpolicecode.lua" type="client" cache="false"/>
+	<script src="pcgpolicecode.lua" type="client"/>
 	
-	<export function="playLocationCode" type="client" />
-	<export function="playLastSeenLocationCode" type="client" />
-	<export function="playLastSeenVehicleCode" type="client" />
+	<export function="playCrimeReport" type="client" />
+	<export function="playLastSeenLocation" type="client" />
+	<export function="playLastSeenDescription" type="client" />
 	
-	<file src="codezones.xml" cache="false"/>
-	<file src="carcolors.xml" cache="false"/>
-	<file src="vehiclecode.xml" cache="false"/>
-	<file src="vehiclecodetime.xml" cache="false"/>
+	<file src="codezones.xml"/>
+	<file src="carcolors.xml"/>
+	<file src="vehiclecode.xml"/>
+	<file src="vehiclecodetime.xml"/>
 </meta>
